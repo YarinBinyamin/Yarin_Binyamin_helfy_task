@@ -140,6 +140,6 @@ Base URL: `http://localhost:4000`
 
 ---
 ---
-### My pov
+### My POV
 It took me 4.5 hours, more than required.
 i had troubles with the carousel scrolling which make the app do not working perfectly and wate time of fixing it . hopefully you'll find good implementations in this project.  
