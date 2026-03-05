@@ -18,7 +18,7 @@ function createTask(data) {
         description: data.description ?? "",
         completed: data.completed ?? false,
         createdAt: data.createdAt ?? new Date().toISOString(),
-        color : data.color ?? "#3b82f6",
+        color : data.color ?? "#f59e0b",
         priority: data.priority ?? "medium"
     }
 
@@ -28,18 +28,19 @@ function createTask(data) {
 
 // update task (toggle)
 function updateTask(id, task) {
-    const index = tasks.findIndex( t => t.id === id)
+    const index = tasks.findIndex(t => t.id === id)
     if (index === -1) {
         return null
     }
-    curTask = tasks[index]
+
+    const currentTask = tasks[index]
     const updatedTask = {
-        ...curTask,
+        ...currentTask,
         ...task
     }
 
     tasks[index] = updatedTask
-    return TheUpdatedTask
+    return updatedTask
 }
 
 // delete task
