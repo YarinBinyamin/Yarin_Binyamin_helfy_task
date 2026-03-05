@@ -1,12 +1,16 @@
-import { Router } from "express";
-import * as service from '../services/taskService.js'
-import { get } from "../app";
+const { Router } = require('express');
+const { getAllTasks, getTaskById, createTask, updateTask, deleteTask, toggleTask } = require('../controller/taskController');
+
 const router = Router ();
 
 router.get('/', getAllTasks)
+router.get('/:id', getTaskById)
+
 router.post('/', createTask)
-router.put('/:id', updateTask)
-router.delete('/:id', deleteTask)
 router.post('/:id/toggle', toggleTask)
 
-export default router
+router.put('/:id', updateTask)
+router.delete('/:id', deleteTask)
+
+
+module.exports = router;

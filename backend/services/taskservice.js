@@ -1,33 +1,33 @@
-const repo = require('../utils/taskrepository');
+const repo = require('../utils/taskRepo');
 const {sortByDate , isValidationTask} = require('../utils/helpers');
 
-export const getAllTasks = async function() {
+function getAllTasks() {
     const Alltasks = repo.getAllTasks();
     return sortByDate(Alltasks);
 
 }
 
-export const getTaskById = async function(id) {
+function getTaskById(id) {
     const tasks = repo.getAllTasks();
     return tasks.find( t => t.id === id) || null
 }
 
-export const createTask = async function(task) {
-    const ToCheckTask = repo.createTask(task)
-    const checkTask = isValidationTask(ToCheckTask)
-    if (!checkTask) {
+function createTask(task) {
+    const checkedTask = isValidationTask(task)
+    if (!checkedTask) {
         throw new Error('invalid task data for creation')
     }
-    return ToCheckTask
+    return repo.createTask(task)
 }
 
-export const updateTask = async function(id, task) {
+function updateTask(id, task) {
     const updatedTask = repo.updateTask(id, task)
     if (!updatedTask) {
           throw new Error('task not found for update')
     }  
     return updatedTask
 }
+
 
 function deleteTask(id) {
     const isDeleted = repo.deleteTask(id)
@@ -47,6 +47,7 @@ function toggleTask(id) {
     return updatedTask
 }   
 
+module.exports = {getAllTasks, getTaskById, createTask, updateTask, deleteTask, toggleTask}
 
 
 

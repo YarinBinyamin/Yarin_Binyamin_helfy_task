@@ -1,7 +1,6 @@
-import { Request, Response } from 'express';
-import * as service from '../services/taskService.js'
 
-export const getAllTasks = async(req, res) => {
+const service = require('../services/taskservice');
+const getAllTasks = (req, res) => {
     try {
         const tasks = service.getAllTasks();
         res.json(tasks)
@@ -10,7 +9,7 @@ export const getAllTasks = async(req, res) => {
     }
 }
 
-export const getTaskById = async(req, res) => {
+const getTaskById = (req, res) => {
     try {
         const id = parseInt(req.params.id)
         const task = service.getTaskById(id)
@@ -24,7 +23,9 @@ export const getTaskById = async(req, res) => {
     }
 }
 
-export const createTask = async(req, res) => {
+
+
+ const createTask = (req, res) => {
     try {
         const task = req.body
         const newTask = service.createTask(task)
@@ -35,7 +36,7 @@ export const createTask = async(req, res) => {
     }
 }   
 
-export const updateTask = async(req,res) => {
+ const updateTask = (req,res) => {
     try{
         const id = parseInt(req.params.id)
         const task = req.body
@@ -46,7 +47,7 @@ export const updateTask = async(req,res) => {
     }
 }
 
-export const deleteTask = async(req, res) => {
+ const deleteTask = (req, res) => {
     try {
         const id = parseInt(req.params.id)
         service.deleteTask(id)
@@ -58,7 +59,7 @@ export const deleteTask = async(req, res) => {
     }   
 }
 
-export const toggleTask = async(req, res) => {
+ const toggleTask = (req, res) => {
     try {
         const id = parseInt(req.params.id)
         const updatedTask = service.toggleTask(id)
@@ -68,3 +69,4 @@ export const toggleTask = async(req, res) => {
     }           
 }
 
+module.exports = { getAllTasks, getTaskById, createTask, updateTask, deleteTask, toggleTask }

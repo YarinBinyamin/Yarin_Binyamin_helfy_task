@@ -19,7 +19,7 @@ function createTask(data) {
         completed: data.completed ?? false,
         createdAt: data.createdAt ?? new Date().toISOString(),
         color : data.color ?? "#3b82f6",
-        priority: 'low' | 'medium' | 'high'
+        priority: data.priority ?? "medium"
     }
 
     tasks.push(newTask)
@@ -51,3 +51,5 @@ function deleteTask(id) {
     tasks.splice(index, 1)
     return true
 }
+
+module.exports = { getAllTasks, createTask, updateTask, deleteTask }
